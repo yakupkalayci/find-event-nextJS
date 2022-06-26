@@ -5,7 +5,6 @@ function Slider({ images }) {
   let imageList = images;
 
   const handleChange = (e) => {
-    console.log(e.target.innerText);
     let imgDOM = document.querySelector("img");
     const index = imageList.indexOf(imgDOM.src);
     if(e.target.innerText === "<") {
