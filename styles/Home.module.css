@@ -9,14 +9,11 @@
 .subsubContainer {
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
-    border: 1px solid red;
 }
 
 .filters {
     width: 25%;
-    border: 1px solid blue;
-    margin-top: 3rem;
+    margin-top: 1rem;
 }
 
 .eventCard {
@@ -24,5 +21,24 @@
     display: flex;
     flex-wrap: wrap;
     margin-left: 5rem;
+    margin-top: 1rem;
+}
+
+.titles {
+    display: flex;
+    justify-content: center;
     margin-top: 3rem;
+}
+
+.titles > h3 {
+    font-size: 28px;
+}
+
+.firstTitle {
+    width: 25%;
+}
+
+.secondTitle {
+    width: 75%;
+    padding-left: 4rem;
 }

@@ -6,13 +6,14 @@ import EventCard from "../components/eventCard";
 import styles from "../styles/Home.module.css";
 
 export default function Home({ data }) {
-  const images = [
-    "https://images.unsplash.com/photo-1655666002240-e9ad7230e9be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-    "https://images.unsplash.com/photo-1648737155328-0c0012cf2f20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-    "https://images.unsplash.com/photo-1638913662295-9630035ef770?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-  ];
+  const images = [];
 
   console.log(data);
+
+  for(let i = 0; i < 5; i++) {
+    images[i] = data.items[i];
+  }
+
   const items = data.items;
 
   return (
@@ -28,6 +29,10 @@ export default function Home({ data }) {
       <div className={styles.subContainer}>
         <div>
           <Slider images={images} />
+        </div>
+        <div className={styles.titles}>
+            <h3 className={styles.firstTitle}>Filtreler</h3>
+            <h3 className={styles.secondTitle}>Güncel Etkinlikler</h3>
         </div>
         <div className={styles.subsubContainer}>
           <div className={styles.filters}>

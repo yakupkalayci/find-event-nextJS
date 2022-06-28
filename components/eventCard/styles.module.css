@@ -21,6 +21,10 @@
     padding-top: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .eventTitle:hover {
@@ -34,11 +38,26 @@
     align-items: center;
 }
 
+.eventTimeandPlace {
+    width: 100%;
+}
+
+.eventTimeandPlace > p:first-child {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.span {
+    margin-right: 5px;
+}
+
 .eventDetailBtn {
     padding: 0 1rem;
 }
 
-.eventDetailBtn > button{
+.eventDetailBtn > a > button{
     width: 100%;
     padding: 0.5rem 0;
     border: none;
@@ -50,7 +69,7 @@
     border: 1px solid teal;
 }
 
-.eventDetailBtn > button:hover {
+.eventDetailBtn > a > button:hover {
     cursor: pointer;
     background-color: white;
     color: teal;

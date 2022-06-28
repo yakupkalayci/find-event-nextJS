@@ -1,4 +1,6 @@
 import styles from "./styles.module.css";
+import { MdLocationPin, MdDateRange } from 'react-icons/md';
+
 
 function EventCard({eventImg, eventTitle, eventDate, eventPlace, url, eventPrice}) {
 
@@ -9,21 +11,26 @@ function EventCard({eventImg, eventTitle, eventDate, eventPlace, url, eventPrice
       </div>
       <div>
         <div className={styles.eventTitle}>
-          <h3>
+          <h4>
             <a href={url} target="_blank">{eventTitle}</a>
-          </h3>
+          </h4>
         </div>
         <div className={styles.eventDetails}>
           <div className={styles.eventTimeandPlace}>
-            <p style={{marginBottom:"6px"}}>{eventPlace}</p>
-            <p>{eventDate}</p>
+            <p style={{marginBottom:"6px"}}>
+              <span className={styles.span}><MdLocationPin /></span>
+              <span>{eventPlace}</span>
+            </p>
+            <p>
+              <span className={styles.span}><MdDateRange /></span>
+              <span>{eventDate}</span>
+            </p>
           </div>
-          {
-            eventPrice && <p>Ücretsiz</p>
-          }
         </div>
         <div className={styles.eventDetailBtn}>
-          <button>İncele</button>
+          <a href="#">
+            <button>İncele</button>
+          </a>
         </div>
       </div>
     </div>
