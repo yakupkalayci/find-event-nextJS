@@ -3,9 +3,12 @@ import Header from "../components/header";
 import Slider from "../components/slider";
 import Filters from "../components/filters";
 import EventCard from "../components/eventCard";
+import { useEvent } from "../context/EventsContext";
 import styles from "../styles/Home.module.css";
 
 export default function Home({ data }) {
+  const {filterEvents} = useEvent();
+  const events = filterEvents(data.items);
   const images = [];
 
   console.log(data);
@@ -13,8 +16,6 @@ export default function Home({ data }) {
   for(let i = 0; i < 5; i++) {
     images[i] = data.items[i];
   }
-
-  const items = data.items;
 
   return (
     <div className={styles.mainContainer}>
@@ -40,10 +41,13 @@ export default function Home({ data }) {
           </div>
           <div className={styles.eventCard}>
             {
-              items.map(item => {
+             events.length > 0 ? 
+              events.map(item => {
                 let date = new Date(item.start);
                 return <EventCard key={item.id} eventTitle={item.name} url={item.url} eventPrice={item.is_free} eventPlace={item.venue.name} eventImg={item.poster_url} eventDate={date.toDateString()} />
               })
+              :
+              <div>No item!</div>
             }
           </div>
         </div>
