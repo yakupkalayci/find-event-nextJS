@@ -51,7 +51,7 @@ function Filters() {
 
   return (
     <div className={styles.filtersContainer}>
-      <div className={styles.kindFilter}>
+      <div className={styles.categoryFilter}>
         <label htmlFor='kinds'>Türe Göre:</label> <br />
           <select id='kinds' name='kinds' onChange={(e) => handleSelect(e)}>
             {

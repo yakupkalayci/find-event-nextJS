@@ -47,7 +47,7 @@ export default function Home({ data }) {
                 return <EventCard key={item.id} eventTitle={item.name} url={item.url} eventPrice={item.is_free} eventPlace={item.venue.name} eventImg={item.poster_url} eventDate={date.toDateString()} />
               })
               :
-              <div>No item!</div>
+              <div>Seçtiğiniz filtrelemeye uygun etkinlik bulunamamıştır!</div>
             }
           </div>
         </div>

@@ -1,4 +1,43 @@
 .filtersContainer {
     border-right: 1px solid rgb(43, 39, 39);
     height: 99.5%;
+    padding-top: 1rem;
+}
+
+.categoryFilter {
+    margin-bottom: 1rem;
+    padding-right: 5rem;
+    padding-bottom: 1rem;
+}
+
+.categoryFilter:first-child {
+    margin-top: 2rem;
+}
+
+.categoryFilter > select {
+    margin-top: 0.5rem;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+
+.categoryFilter > label {
+    font-weight: bold;
+}
+
+.categoryFilter > button {
+    width: 40%;
+    padding: 0.5rem 0;
+    border: none;
+    border-radius: 6px;
+    background-color: teal;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1.3px;
+    border: 1px solid teal;
+}
+
+.categoryFilter > button:hover {
+    cursor: pointer;
 }
