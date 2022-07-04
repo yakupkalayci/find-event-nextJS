@@ -1,8 +1,9 @@
 import styles from "./styles.module.css";
 import { MdLocationPin, MdDateRange } from 'react-icons/md';
+import Link from "next/link";
 
 
-function EventCard({eventImg, eventTitle, eventDate, eventPlace, url, eventPrice}) {
+function EventCard({eventImg, eventTitle, eventDate, eventPlace, url, id, eventPrice}) {
 
   return (
     <div className={styles.eventCard}>
@@ -28,9 +29,9 @@ function EventCard({eventImg, eventTitle, eventDate, eventPlace, url, eventPrice
           </div>
         </div>
         <div className={styles.eventDetailBtn}>
-          <a href="#">
+          <Link href={`/events/${id}`}>
             <button>İncele</button>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

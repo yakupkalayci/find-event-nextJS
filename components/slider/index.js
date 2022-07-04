@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import Link from "next/link";
 import { MdLocationPin, MdDateRange } from "react-icons/md";
 import styles from "./styles.module.css";
 
@@ -60,9 +61,9 @@ function Slider({ images }) {
               </span>
               <span>{new Date(imageList[index].start).toDateString()}</span>
             </p>
-            <a href="#" className={styles.eventBtn}>
-              İncele
-            </a>
+            <Link href={`/events/${imageList[index].id}`}>
+              <a className={styles.eventBtn}>İncele</a>
+            </Link>
           </div>
         </div>
         <div className={styles.changeBtn} onClick={(e) => handleChange(e)}>

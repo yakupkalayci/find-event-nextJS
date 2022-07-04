@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./styles.module.css";
 
-function Header() {
+function Header({searchActive}) {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -11,9 +11,10 @@ function Header() {
       </div>
       <div className={styles.links}>
         <ul>
-          <li>
+          {searchActive && <li>
             <a href="#">Ara</a>
           </li>
+          }
           <li>
             <a href="#">Popüler Etkinlikler</a>
           </li>

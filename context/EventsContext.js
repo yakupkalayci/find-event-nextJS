@@ -9,7 +9,7 @@ export const EventProvider = ({children}) => {
     const [lastModified, setLastModified] = useState();
 
     const handleSelect = (e) => {
-        setFilterItems({...filterItems, [e.target.name]: e.target.value});
+        setFilterItems({[e.target.name]: e.target.value});
         setHasChanged(true);
         setLastModified(e.target.name);
     }
@@ -17,6 +17,7 @@ export const EventProvider = ({children}) => {
     const handleClick = () => {
         setResetBtn(true);
         setHasChanged(false);
+        setFilterItems({kind:"", categories:"", cities:""});
     }
 
     const filterEvents = (data) => {
@@ -38,10 +39,6 @@ export const EventProvider = ({children}) => {
             return data;
         }
     }
-
-    // useEffect(() => {
-    //     filterEvents();
-    // }, [filterItems])
 
     return (
         <EventsContext.Provider value={{filterItems, handleSelect, handleClick, filterEvents}}>

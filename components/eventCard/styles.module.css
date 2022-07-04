@@ -57,7 +57,7 @@
     padding: 0 1rem;
 }
 
-.eventDetailBtn > a > button{
+.eventDetailBtn > button{
     width: 100%;
     padding: 0.5rem 0;
     border: none;
@@ -69,7 +69,7 @@
     border: 1px solid teal;
 }
 
-.eventDetailBtn > a > button:hover {
+.eventDetailBtn > button:hover {
     cursor: pointer;
     background-color: white;
     color: teal;

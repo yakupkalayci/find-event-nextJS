@@ -7,7 +7,7 @@ function Filters() {
   const [categoryList, setCategoryList] = useState([]);
   const [cityList, setCityList] = useState([]);
 
-  const {handleSelect, handleClick} = useEvent();
+  const {filterItems, handleSelect, handleClick} = useEvent();
 
   useEffect(() => {
     async function fetchKindData() {
