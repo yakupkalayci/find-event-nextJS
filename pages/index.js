@@ -61,7 +61,7 @@ export async function getStaticProps() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "X-Etkinlik-token": "92510ee702346c171e6e27c6566af993",
+      "X-Etkinlik-token": process.env.NEXT_PUBLIC_ETKINLIK_TOKEN
     },
   });
   const data = await response.json();
