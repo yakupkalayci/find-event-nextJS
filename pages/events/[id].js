@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Head from "next/head";
 import Header from "../../components/header";
+import Map from "../../components/googleMap/Map";
 import { MdLocationPin, MdDateRange } from "react-icons/md";
 import { BsFacebook, BsTwitter, BsInstagram } from "react-icons/bs";
 import { GiSandsOfTime } from "react-icons/gi";
@@ -78,6 +79,7 @@ export default function Event({ data }) {
           </div>
           <div className={styles.gMap}>
             Google Map
+            <Map location={location.lat && location.lng && location}/>
           </div>
         </div>
       </div>

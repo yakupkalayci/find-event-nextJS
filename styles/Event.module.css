@@ -110,8 +110,3 @@
 .shareBtn:hover {
     cursor: pointer;
 }
-
-.gMap {
-    height: 200px;
-    width: 200px;
-}
