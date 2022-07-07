@@ -36,7 +36,7 @@ function App({location}) {
     <div>
       <GoogleMap
         style={mapStyles}
-        bootstrapURLKeys={{ key: "AIzaSyDeugGMQEu1yUPen8J-rFW_QLxDfBSrx6U" }}
+        bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
         center={{ lat: Number(location?.lat), lng: Number(location?.lng) }}
         zoom={15}
       >
