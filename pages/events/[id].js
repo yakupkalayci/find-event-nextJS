@@ -16,6 +16,40 @@ export default function Event({ data }) {
     return { __html: data.content };
   };
 
+  const calcEventTime = (rawTime) => {
+    const startIndex = rawTime.indexOf("T");
+    const endIndex = rawTime.indexOf("+");
+    const length = endIndex - startIndex;
+    return rawTime.substr(startIndex+1, length-1);
+  }
+
+  const calcCountdown = () => {
+    const eventDate = new Date(data.start).getTime();
+    const now = Date.now();
+    const diff = eventDate - now;
+    let hour=0, minute=0;
+    minute = Math.round(diff / 60000);
+    if(minute > 60) {
+      hour = Math.round(minute / 60);
+      minute = minute % 60
+      return {
+        hour,
+        minute
+      }
+    }
+    else {
+      return {
+        hour,
+        minute
+      }
+    }
+  }
+
+  const date = new Date(data.start).toDateString();
+  const time = calcEventTime(data.start);
+
+  calcCountdown(date);
+
   const location = {
     lat: data.venue.lat,
     lng: data.venue.lng,
@@ -42,7 +76,7 @@ export default function Event({ data }) {
                     <MdDateRange />
                     <b>Tarih - Saat:</b>
                     <br /> 
-                    {data.start}
+                    {date} - {time}
                   </p>
                   <p>
                     <MdLocationPin />
@@ -56,7 +90,7 @@ export default function Event({ data }) {
               <div className={styles.countdown}>
                 <GiSandsOfTime className={styles.countdownIcon} />
                 <p>
-                    Etkinliğin başlamasına <br/> <strong>48 saat 41 dakika</strong> <br/> kaldı.
+                    Etkinliğin başlamasına <br/> <strong>{calcCountdown().hour} saat {calcCountdown().minute} dakika</strong> <br/> kaldı.
                 </p>
                 <div>
                     <button className={`${styles.faceboobBtn} ${styles.shareBtn}`}>

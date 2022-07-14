@@ -1,7 +1,6 @@
 import React from 'react';
 import Map, {Marker, Popup} from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css';
-import styles from "./Map.module.css";
 
 const mapBoxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
