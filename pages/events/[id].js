@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import Header from "../../components/header";
-import Map from "../../components/googleMap/Map";
+import Mapx from "../../components/map/Map";
 import { MdLocationPin, MdDateRange } from "react-icons/md";
 import { BsFacebook, BsTwitter, BsInstagram } from "react-icons/bs";
 import { GiSandsOfTime } from "react-icons/gi";
@@ -17,7 +17,6 @@ export default function Event({ data }) {
   };
 
   const location = {
-    // address: data.venue.address,
     lat: data.venue.lat,
     lng: data.venue.lng,
   };
@@ -77,9 +76,15 @@ export default function Event({ data }) {
             <h3>Açıklama</h3>
             <div dangerouslySetInnerHTML={createMarkup()} />;
           </div>
-          <div className={styles.gMap}>
-            Google Map
-            <Map location={location.lat && location.lng && location}/>
+          <div className={styles.map}>
+            <h3>Konum Bilgisi</h3>
+            {
+              location.lat && location.lng
+              ?
+              <Mapx location={location} addressTitle={data.venue.name} />
+              :
+              <p>Konum bilgisi bulunamadı.</p>
+            }
           </div>
         </div>
       </div>
