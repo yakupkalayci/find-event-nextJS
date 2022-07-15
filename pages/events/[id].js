@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import Header from "../../components/header";
 import Mapx from "../../components/map/Map";
+import { createMarkup, calcEventTime, calcCountdown, changeDay, changeMonth, setDate } from "../../utils";
 import { MdLocationPin, MdDateRange } from "react-icons/md";
 import { BsFacebook, BsTwitter, BsInstagram } from "react-icons/bs";
 import { GiSandsOfTime } from "react-icons/gi";
@@ -9,46 +10,17 @@ import styles from "../../styles/Event.module.css";
 
 export default function Event({ data }) {
   useEffect(() => {
-    window.location.hash = `${data.slug}`;
+    const content = document.querySelector("#description");
+    content.removeChild(content.lastChild);
   }, []);
 
-  function createMarkup() {
-    return { __html: data.content };
-  };
 
-  const calcEventTime = (rawTime) => {
-    const startIndex = rawTime.indexOf("T");
-    const endIndex = rawTime.indexOf("+");
-    const length = endIndex - startIndex;
-    return rawTime.substr(startIndex+1, length-1);
-  }
+  let date = new Date(data.start).toDateString();
+  console.log(date);
+  date = setDate(date);
 
-  const calcCountdown = () => {
-    const eventDate = new Date(data.start).getTime();
-    const now = Date.now();
-    const diff = eventDate - now;
-    let hour=0, minute=0;
-    minute = Math.round(diff / 60000);
-    if(minute > 60) {
-      hour = Math.round(minute / 60);
-      minute = minute % 60
-      return {
-        hour,
-        minute
-      }
-    }
-    else {
-      return {
-        hour,
-        minute
-      }
-    }
-  }
-
-  const date = new Date(data.start).toDateString();
   const time = calcEventTime(data.start);
-
-  calcCountdown(date);
+  const {day, hour, minute} = calcCountdown(data);
 
   const location = {
     lat: data.venue.lat,
@@ -90,7 +62,7 @@ export default function Event({ data }) {
               <div className={styles.countdown}>
                 <GiSandsOfTime className={styles.countdownIcon} />
                 <p>
-                    Etkinliğin başlamasına <br/> <strong>{calcCountdown().hour} saat {calcCountdown().minute} dakika</strong> <br/> kaldı.
+                    Etkinliğin başlamasına <br/> <strong>{day} gün {hour} saat {minute} dakika</strong> <br/> kaldı.
                 </p>
                 <div>
                     <button className={`${styles.faceboobBtn} ${styles.shareBtn}`}>
@@ -106,9 +78,9 @@ export default function Event({ data }) {
                 </div>
             </div>
           </div>
-          <div className={styles.eventDescription}>
+          <div className={styles.eventDescription} id="description">
             <h3>Açıklama</h3>
-            <div dangerouslySetInnerHTML={createMarkup()} />;
+            <div dangerouslySetInnerHTML={createMarkup(data)} />;
           </div>
           <div className={styles.map}>
             <h3>Konum Bilgisi</h3>
