@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 
 const EventsContext = createContext();
 
@@ -7,6 +7,7 @@ export const EventProvider = ({children}) => {
     const [hasChanged, setHasChanged] = useState(false);
     const [resetBtn, setResetBtn] = useState(false);
     const [lastModified, setLastModified] = useState();
+    const [title, setTitle] = useState("Güncel Etkinlikler")
 
     const handleSelect = (e) => {
         setFilterItems({[e.target.name]: e.target.value});
@@ -17,11 +18,13 @@ export const EventProvider = ({children}) => {
     const handleClick = () => {
         setResetBtn(true);
         setHasChanged(false);
+        setTitle("Güncel Etkinlikler");
         setFilterItems({kind:"", categories:"", cities:""});
     }
 
     const filterEvents = (data) => {
         if(hasChanged) {
+            setTitle("Sonuçlar")
             if(lastModified === "kinds") {
                 const events = data?.filter(item => item.format.slug.indexOf(filterItems["kinds"]) > -1);
                 return events;
@@ -41,7 +44,7 @@ export const EventProvider = ({children}) => {
     }
 
     return (
-        <EventsContext.Provider value={{filterItems, handleSelect, handleClick, filterEvents}}>
+        <EventsContext.Provider value={{filterItems, handleSelect, handleClick, filterEvents, title}}>
             {children}
         </EventsContext.Provider>
     );

@@ -9,7 +9,7 @@ function Mapx({location, addressTitle}) {
     const lng = Number(location.lng);
 
     const textStyle = {
-        fontSize: "22px",
+        fontSize: "16px",
         fontWeight: "lighter"
     }
 

@@ -1,12 +1,17 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import Link from "next/link";
 import { MdLocationPin, MdDateRange } from "react-icons/md";
+import { setDate, removeSemicolon } from "../../utils";
 import styles from "./styles.module.css";
 
 function Slider({ images }) {
   let imageList = images;
   const imageUrls = imageList.map((item) => item.poster_url);
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    removeSemicolon();
+  }, [])
 
   const handleChange = (e) => {
     const imgDOM = document.querySelector("img");
@@ -46,7 +51,7 @@ function Slider({ images }) {
           </div>
           <div className={styles.info}>
             <h3 className={styles.eventTitle}>{imageList[index].name}</h3>
-            <div className={styles.eventContent}>
+            <div className={styles.eventContent} id="description">
               <div dangerouslySetInnerHTML={createMarkup()} />;
             </div>
             <p className={styles.eventLocation}>
@@ -59,7 +64,7 @@ function Slider({ images }) {
               <span className={styles.span}>
                 <MdDateRange className={styles.icon} />{" "}
               </span>
-              <span>{new Date(imageList[index].start).toDateString()}</span>
+              <span>{setDate(new Date(imageList[index].start).toDateString())}</span>
             </p>
             <Link href={`/events/${imageList[index].id}`}>
               <a className={styles.eventBtn}>İncele</a>

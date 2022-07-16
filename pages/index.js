@@ -5,9 +5,10 @@ import Filters from "../components/filters";
 import EventCard from "../components/eventCard";
 import { useEvent } from "../context/EventsContext";
 import styles from "../styles/Home.module.css";
+import { setDate } from "../utils";
 
 export default function Home({ data }) {
-  const {filterEvents} = useEvent();
+  const {filterEvents, title} = useEvent();
   const events = filterEvents(data.items);
   const images = [];
 
@@ -33,7 +34,7 @@ export default function Home({ data }) {
         </div>
         <div className={styles.titles}>
             <h3 className={styles.firstTitle}>Filtreler</h3>
-            <h3 className={styles.secondTitle}>Güncel Etkinlikler</h3>
+            <h3 className={styles.secondTitle}>{title}</h3>
         </div>
         <div className={styles.subsubContainer}>
           <div className={styles.filters}>
@@ -43,11 +44,11 @@ export default function Home({ data }) {
             {
              events.length > 0 ? 
               events.map(item => {
-                let date = new Date(item.start);
-                return <EventCard key={item.id} id={item.id} eventTitle={item.name} url={item.url} eventPrice={item.is_free} eventPlace={item.venue.name} eventImg={item.poster_url} eventDate={date.toDateString()} />
+                let date = new Date(item.start).toDateString();
+                return <EventCard key={item.id} id={item.id} eventTitle={item.name} url={item.url} eventPrice={item.is_free} eventPlace={item.venue.name} eventImg={item.poster_url} eventDate={setDate(date)} />
               })
               :
-              <div>Seçtiğiniz filtrelemeye göre uygun etkinlik bulunamamıştır!</div>
+              <div>Seçtiğiniz filtrelemeye göre uygun etkinlik bulunamamıştır!</div> 
             }
           </div>
         </div>

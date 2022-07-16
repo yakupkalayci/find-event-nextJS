@@ -2,21 +2,20 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import Header from "../../components/header";
 import Mapx from "../../components/map/Map";
-import { createMarkup, calcEventTime, calcCountdown, changeDay, changeMonth, setDate } from "../../utils";
+import { createMarkup, calcEventTime, calcCountdown, setDate, removeSemicolon } from "../../utils";
 import { MdLocationPin, MdDateRange } from "react-icons/md";
-import { BsFacebook, BsTwitter, BsInstagram } from "react-icons/bs";
 import { GiSandsOfTime } from "react-icons/gi";
 import styles from "../../styles/Event.module.css";
 
 export default function Event({ data }) {
   useEffect(() => {
-    const content = document.querySelector("#description");
-    content.removeChild(content.lastChild);
+    setTimeout(() => {
+      removeSemicolon();
+    }, 1000)
   }, []);
 
 
   let date = new Date(data.start).toDateString();
-  console.log(date);
   date = setDate(date);
 
   const time = calcEventTime(data.start);
@@ -57,25 +56,14 @@ export default function Event({ data }) {
                     {data.venue.name}
                   </p>
                 </div>
-                <button className={styles.actionBtn}>Bilet Al</button>
+                <a className={styles.actionBtn} href={data.ticket_url} target="_blank">Bilet Al</a>
               </div>
               <div className={styles.countdown}>
                 <GiSandsOfTime className={styles.countdownIcon} />
                 <p>
                     Etkinliğin başlamasına <br/> <strong>{day} gün {hour} saat {minute} dakika</strong> <br/> kaldı.
                 </p>
-                <div>
-                    <button className={`${styles.faceboobBtn} ${styles.shareBtn}`}>
-                        <BsFacebook />
-                        </button>
-                    <button className={`${styles.twitterBtn} ${styles.shareBtn}`}>
-                        <BsTwitter />
-                    </button>
-                    <button className={`${styles.instagramBtn} ${styles.shareBtn}`}>
-                        <BsInstagram />
-                    </button>
-                </div>
-                </div>
+              </div>
             </div>
           </div>
           <div className={styles.eventDescription} id="description">
@@ -87,7 +75,7 @@ export default function Event({ data }) {
             {
               location.lat && location.lng
               ?
-              <Mapx location={location} addressTitle={data.venue.name} />
+              <Mapx location={location} addressTitle={data.venue.address} />
               :
               <p>Konum bilgisi bulunamadı.</p>
             }

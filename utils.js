@@ -2,6 +2,11 @@ export function createMarkup(data) {
   return { __html: data.content };
 }
 
+export const removeSemicolon = () => {
+  const content = document.querySelector("#description");
+  content.removeChild(content.lastChild);
+}
+
 export const calcEventTime = (rawTime) => {
   const startIndex = rawTime.indexOf("T");
   const endIndex = rawTime.indexOf("+");
@@ -25,7 +30,6 @@ export const calcCountdown = (data) => {
       hour = hour % 24;
     } 
   }
-  console.log(day, hour, minute);
   return {
     day, hour, minute
   }
@@ -37,28 +41,20 @@ export const changeDay = (date) => {
   switch (day) {
     case "Sun":
       return "Pazar";
-      break;
     case "Mon":
       return "Pazartesi";
-      break;
     case "Tue":
       return "Salı";
-      break;
     case "Wed":
       return "Çarşamba";
-      break;
     case "Thu":
       return "Perşembe";
-      break;
     case "Fri":
       return "Cuma";
-      break;
     case "Sat":
       return "Cumartesi";
-      break;
     default:
       return day;
-      break;
   }
 };
 
@@ -68,44 +64,31 @@ export const changeMonth = (date) => {
   switch (month) {
     case "Jan":
       return "Ocak";
-      break;
     case "Feb":
       return "Şubat";
-      break;
     case "Mar":
       return "Mart";
-      break;
     case "Apr":
       return "Nisan";
-      break;
     case "May":
       return "Mayıs";
-      break;
     case "Jun":
       return "Haziran";
-      break;
     case "Jul":
       return "Temmuz";
-      break;
     case "Aug":
       return "Ağustos";
-      break;
     case "Sep":
       return "Eylül";
-      break;
     case "Oct":
       return "Ekim";
-      break;
     case "Nov":
       return "Kasım";
-      break;
     case "Dec":
       return "Aralık";
-      break;
 
     default:
       return month;
-      break;
   }
 };
 
