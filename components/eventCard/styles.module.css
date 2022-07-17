@@ -75,3 +75,12 @@
     color: teal;
     border: 1px solid teal;
 }
+
+@media screen and (max-width:743px) {
+    .eventCard {
+        width: 100%;
+    }
+    .eventImg > img {
+        width: 90%;
+    }
+}

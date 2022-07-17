@@ -121,3 +121,42 @@
 .icon {
     font-size: 30px;
 }
+
+@media screen and (max-width:743px) {
+    .slider {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+    .main {
+        flex-direction: column;
+        margin: 0;
+        padding: 1rem;
+        width: 100%;
+    }
+    .sliderContainer {
+        width: 100%;
+        background-color: initial;
+    }
+    .eventContent {
+        font-size: 0.9rem;
+    }
+    .changeBtn {
+        margin: 0;
+        padding: 0 1rem;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .info {
+        margin-top: 1rem;
+        margin-left: 0;
+        padding: 0;
+        padding-bottom: 1rem;
+    }
+    .image > img {
+        width: 100%;
+        height: auto;
+    }
+}

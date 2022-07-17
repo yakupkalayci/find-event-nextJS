@@ -3,7 +3,7 @@ import { MdLocationPin, MdDateRange } from 'react-icons/md';
 import Link from "next/link";
 
 
-function EventCard({eventImg, eventTitle, eventDate, eventPlace, url, id, eventPrice}) {
+function EventCard({eventImg, eventTitle, eventDate, eventPlace, url, id}) {
 
   return (
     <div className={styles.eventCard}>

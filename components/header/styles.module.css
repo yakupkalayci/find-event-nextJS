@@ -5,6 +5,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5rem;
+    padding-right: 8rem;
 }
 
 .logo:hover {
@@ -19,4 +20,14 @@
     display: flex;
     justify-content: space-around;
     list-style-type: none;
+}
+
+@media screen and (max-width:743px) {
+    .header {
+        padding: 1rem;
+    }
+    .links > ul {
+        flex-direction: column;
+        row-gap: 10px;
+    }
 }

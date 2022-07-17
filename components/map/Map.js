@@ -20,7 +20,7 @@ function Mapx({location, addressTitle}) {
             longitude: lng,
             zoom: 14
           }}
-          style={{width: 800, height: 400, margin:"3rem auto"}}
+          style={{width: "100%", height: "500px", margin:"1rem auto"}}
           mapStyle="mapbox://styles/mapbox/streets-v9"
           mapboxAccessToken={mapBoxToken}
           NavigationControl

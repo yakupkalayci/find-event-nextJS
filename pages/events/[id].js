@@ -26,13 +26,12 @@ export default function Event({ data }) {
     lng: data.venue.lng,
   };
 
-  console.log(data);
   return (
     <div className={styles.mainContainer}>
       <Head>
         <title>{data.name} - Etkinliğini Bul</title>
       </Head>
-      <Header />
+      <Header  isHomePage={false}/>
       <div className={styles.mainContent}>
         <h2>{data.name}</h2>
         <div className={styles.eventDetails}>
@@ -75,7 +74,7 @@ export default function Event({ data }) {
             {
               location.lat && location.lng
               ?
-              <Mapx location={location} addressTitle={data.venue.address} />
+              <Mapx location={location} addressTitle={data.venue.address} className={styles.mapbox}/>
               :
               <p>Konum bilgisi bulunamadı.</p>
             }
