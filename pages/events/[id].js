@@ -55,7 +55,7 @@ export default function Event({ data }) {
                     {data.venue.name}
                   </p>
                 </div>
-                <a className={styles.actionBtn} href={data.ticket_url} target="_blank">Bilet Al</a>
+                <a className={styles.actionBtn} href={data.ticket_url} target="_blank" rel="noreferrer">Bilet Al</a>
               </div>
               <div className={styles.countdown}>
                 <GiSandsOfTime className={styles.countdownIcon} />
