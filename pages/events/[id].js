@@ -10,7 +10,7 @@ import styles from "../../styles/Event.module.css";
 
 export default function Event({ data }) {
   const router = useRouter();
-  const title = `${data.name} - Etkinliğini Bul`
+  const title = `Etkinliğini Bul`
 
   let date = new Date(data.start).toDateString();
   date = setDate(date);
@@ -52,7 +52,7 @@ export default function Event({ data }) {
                       <MdLocationPin />
                       <b>Konum:</b>
                       <br /> 
-                      {data.venue.name}
+                      {data?.venue.name}
                     </p>
                   </div>
                   <a className={styles.actionBtn} href={data.ticket_url} target="_blank" rel="noreferrer">Bilet Al</a>
