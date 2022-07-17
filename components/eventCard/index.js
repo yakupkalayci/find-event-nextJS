@@ -13,7 +13,7 @@ function EventCard({eventImg, eventTitle, eventDate, eventPlace, url, id}) {
       <div>
         <div className={styles.eventTitle}>
           <h4>
-            <a href={url} target="_blank">{eventTitle}</a>
+            <a href={url} target="_blank" rel="noreferrer">{eventTitle}</a>
           </h4>
         </div>
         <div className={styles.eventDetails}>
