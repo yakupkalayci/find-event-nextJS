@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Head from "next/head";
+import {useRouter} from "next/router";
 import Header from "../../components/header";
 import Mapx from "../../components/map/Map";
 import { createMarkup, calcEventTime, calcCountdown, setDate, removeSemicolon } from "../../utils";
@@ -8,6 +9,8 @@ import { GiSandsOfTime } from "react-icons/gi";
 import styles from "../../styles/Event.module.css";
 
 export default function Event({ data }) {
+  const router = useRouter();
+
   useEffect(() => {
     setTimeout(() => {
       removeSemicolon();
@@ -26,63 +29,67 @@ export default function Event({ data }) {
     lng: data.venue.lng,
   };
 
-  return (
-    <div className={styles.mainContainer}>
-      <Head>
-        <title>{data.name} - Etkinliğini Bul</title>
-      </Head>
-      <Header  isHomePage={false}/>
-      <div className={styles.mainContent}>
-        <h2>{data.name}</h2>
-        <div className={styles.eventDetails}>
-          <div className={styles.firstDetails}>
-            <div className={styles.eventImg}>
-              <img src={data.poster_url} width="500px" height="300px" />
-            </div>
-            <div className={styles.eventInfos}>
-              <div className={styles.datePlaceInfos}>
-                <div>
+  if(router.isFallback) {
+    return <div>Yükleniyor..</div>
+  } else {
+    return (
+      <div className={styles.mainContainer}>
+        <Head>
+          <title>{data.name} - Etkinliğini Bul</title>
+        </Head>
+        <Header  isHomePage={false}/>
+        <div className={styles.mainContent}>
+          <h2>{data.name}</h2>
+          <div className={styles.eventDetails}>
+            <div className={styles.firstDetails}>
+              <div className={styles.eventImg}>
+                <img src={data.poster_url} width="500px" height="300px" />
+              </div>
+              <div className={styles.eventInfos}>
+                <div className={styles.datePlaceInfos}>
+                  <div>
+                    <p>
+                      <MdDateRange />
+                      <b>Tarih - Saat:</b>
+                      <br /> 
+                      {date} - {time}
+                    </p>
+                    <p>
+                      <MdLocationPin />
+                      <b>Konum:</b>
+                      <br /> 
+                      {data.venue.name}
+                    </p>
+                  </div>
+                  <a className={styles.actionBtn} href={data.ticket_url} target="_blank" rel="noreferrer">Bilet Al</a>
+                </div>
+                <div className={styles.countdown}>
+                  <GiSandsOfTime className={styles.countdownIcon} />
                   <p>
-                    <MdDateRange />
-                    <b>Tarih - Saat:</b>
-                    <br /> 
-                    {date} - {time}
-                  </p>
-                  <p>
-                    <MdLocationPin />
-                    <b>Konum:</b>
-                    <br /> 
-                    {data.venue.name}
+                      Etkinliğin başlamasına <br/> <strong>{day} gün {hour} saat {minute} dakika</strong> <br/> kaldı.
                   </p>
                 </div>
-                <a className={styles.actionBtn} href={data.ticket_url} target="_blank" rel="noreferrer">Bilet Al</a>
-              </div>
-              <div className={styles.countdown}>
-                <GiSandsOfTime className={styles.countdownIcon} />
-                <p>
-                    Etkinliğin başlamasına <br/> <strong>{day} gün {hour} saat {minute} dakika</strong> <br/> kaldı.
-                </p>
               </div>
             </div>
-          </div>
-          <div className={styles.eventDescription} id="description">
-            <h3>Açıklama</h3>
-            <div dangerouslySetInnerHTML={createMarkup(data)} />;
-          </div>
-          <div className={styles.map}>
-            <h3>Konum Bilgisi</h3>
-            {
-              location.lat && location.lng
-              ?
-              <Mapx location={location} addressTitle={data.venue.address} className={styles.mapbox}/>
-              :
-              <p>Konum bilgisi bulunamadı.</p>
-            }
+            <div className={styles.eventDescription} id="description">
+              <h3>Açıklama</h3>
+              <div dangerouslySetInnerHTML={createMarkup(data)} />;
+            </div>
+            <div className={styles.map}>
+              <h3>Konum Bilgisi</h3>
+              {
+                location.lat && location.lng
+                ?
+                <Mapx location={location} addressTitle={data.venue.address} className={styles.mapbox}/>
+                :
+                <p>Konum bilgisi bulunamadı.</p>
+              }
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    ); 
+  }
 }
 
 export async function getStaticPaths() {
@@ -99,12 +106,11 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
 export async function getStaticProps({ params }) {
-  console.log(params.id);
   const response = await fetch(
     `https://backend.etkinlik.io/api/v2/events/${params.id}`,
     {
