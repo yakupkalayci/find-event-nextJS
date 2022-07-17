@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import Link from "next/link";
 import { MdLocationPin, MdDateRange } from "react-icons/md";
 import { setDate, removeSemicolon } from "../../utils";
@@ -8,10 +8,6 @@ function Slider({ images }) {
   let imageList = images;
   const imageUrls = imageList.map((item) => item.poster_url);
   const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    removeSemicolon();
-  }, [])
 
   const handleChange = (e) => {
     const imgDOM = document.querySelector("img");

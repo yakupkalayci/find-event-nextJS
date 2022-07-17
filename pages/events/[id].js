@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Head from "next/head";
 import {useRouter} from "next/router";
 import Header from "../../components/header";
@@ -10,12 +10,7 @@ import styles from "../../styles/Event.module.css";
 
 export default function Event({ data }) {
   const router = useRouter();
-
-  useEffect(() => {
-    setTimeout(() => {
-      removeSemicolon();
-    }, 1000)
-  }, []);
+  const title = `${data.name} - Etkinliğini Bul`
 
 
   let date = new Date(data.start).toDateString();
@@ -35,7 +30,7 @@ export default function Event({ data }) {
     return (
       <div className={styles.mainContainer}>
         <Head>
-          <title>{data.name} - Etkinliğini Bul</title>
+          <title>{title}</title>
         </Head>
         <Header  isHomePage={false}/>
         <div className={styles.mainContent}>
@@ -100,15 +95,17 @@ export async function getStaticPaths() {
       "X-Etkinlik-token": process.env.NEXT_PUBLIC_ETKINLIK_TOKEN,
     },
   });
+
   const data = await response.json();
-  const paths = await data?.items?.map(item => (
-    {params: { id: String(item.id)}}
-  ));
+  const paths = await data?.items?.map(item => ({
+    params: {id: String(item.id)}
+  }));
 
   return {
     paths,
     fallback: true,
   };
+
 }
 
 export async function getStaticProps({ params }) {
