@@ -100,9 +100,10 @@ export async function getStaticPaths() {
       "X-Etkinlik-token": process.env.NEXT_PUBLIC_ETKINLIK_TOKEN,
     },
   });
-
   const data = await response.json();
-  const paths = await data?.items?.map((item) => ({ params: { id: String(item.id) } }));
+  const paths = await data?.items?.map(item => (
+    {params: { id: String(item.id)}}
+  ));
 
   return {
     paths,
