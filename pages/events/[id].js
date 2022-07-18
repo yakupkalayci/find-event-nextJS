@@ -107,7 +107,7 @@ export async function getStaticPaths() {
 
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const response = await fetch(
     `https://backend.etkinlik.io/api/v2/events/${params.id}`,
     {
