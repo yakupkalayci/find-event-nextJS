@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Header from "../../components/header";
 import Mapx from "../../components/map/Map";
 import {
   createMarkup,
@@ -41,7 +40,6 @@ export default function Event({ data }) {
         <Head>
           <title>{title}</title>
         </Head>
-        <Header isHomePage={false} />
         <div className={styles.mainContent}>
           <h2>{data.name}</h2>
           <div className={styles.eventDetails}>
