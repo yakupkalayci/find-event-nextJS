@@ -11,7 +11,7 @@ function Slider({ images }) {
 
   const handleChange = (e) => {
     const imgDOM = document.querySelector("img");
-    setIndex(imageUrls.indexOf(imgDOM.src));
+    setIndex(imageUrls?.indexOf(imgDOM.src));
 
     if (e.target.innerText === "<") {
       if (index === 0) {
@@ -27,7 +27,7 @@ function Slider({ images }) {
       }
     }
 
-    setIndex(imageUrls.indexOf(imgDOM.src));
+    setIndex(imageUrls?.indexOf(imgDOM.src));
   };
 
   function createMarkup() {
