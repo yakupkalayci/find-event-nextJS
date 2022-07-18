@@ -3,11 +3,8 @@ export function createMarkup(data) {
 }
 
 export const removeSemicolon = () => {
-  setTimeout(() => {
-    const content = document.querySelector("#description");
-    console.log(content.lastChild);
-    content.removeChild(content.lastChild);
-  }, 3000)
+  const content = document.querySelector("#description");
+  content.removeChild(content.lastChild);
 }
 
 export const calcEventTime = (rawTime) => {

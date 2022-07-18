@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "next/head";
 import Header from "../components/header";
 import Slider from "../components/slider";
@@ -72,5 +73,6 @@ export async function getStaticProps() {
     props: {
       data,
     },
+    revalidate: 60
   };
 }

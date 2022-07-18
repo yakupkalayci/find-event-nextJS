@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Head from "next/head";
 import {useRouter} from "next/router";
 import Header from "../../components/header";
@@ -10,7 +10,11 @@ import styles from "../../styles/Event.module.css";
 
 export default function Event({ data }) {
   const router = useRouter();
-  const title = `Etkinliğini Bul`
+  const title = `${data.name} - Etkinliğini Bul`
+
+  useEffect(() => {
+    removeSemicolon();
+  }, [])
 
   let date = new Date(data.start).toDateString();
   date = setDate(date);
@@ -76,7 +80,7 @@ export default function Event({ data }) {
                 ?
                 <Mapx location={location} addressTitle={data.venue.address} className={styles.mapbox}/>
                 :
-                <p>Konum bilgisi bulunamadı.</p>
+                <p>Harita verisi mevcut değil.</p>
               }
             </div>
           </div>
