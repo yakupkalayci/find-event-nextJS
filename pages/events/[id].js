@@ -12,10 +12,10 @@ export default function Event({ data }) {
   const router = useRouter();
   const title = `Etkinliğini Bul`
 
-  let date = new Date(data.start).toDateString();
+  let date = new Date(data?.start).toDateString();
   date = setDate(date);
 
-  const time = calcEventTime(data.start);
+  const time = calcEventTime(data?.start);
   const {day, hour, minute} = calcCountdown(data);
 
   const location = {
