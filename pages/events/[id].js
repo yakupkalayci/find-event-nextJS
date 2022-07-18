@@ -1,41 +1,47 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import Header from "../../components/header";
 import Mapx from "../../components/map/Map";
-import { createMarkup, calcEventTime, calcCountdown, setDate, removeSemicolon } from "../../utils";
+import {
+  createMarkup,
+  calcEventTime,
+  calcCountdown,
+  setDate,
+  removeSemicolon,
+} from "../../utils";
 import { MdLocationPin, MdDateRange } from "react-icons/md";
 import { GiSandsOfTime } from "react-icons/gi";
 import styles from "../../styles/Event.module.css";
 
 export default function Event({ data }) {
   const router = useRouter();
-  const title = `${data.name} - Etkinliğini Bul`
+  const title = `${data.name} - Etkinliğini Bul`;
 
   useEffect(() => {
     removeSemicolon();
-  }, [])
+  }, []);
 
   let date = new Date(data.start).toDateString();
   date = setDate(date);
 
   const time = calcEventTime(data.start);
-  const {day, hour, minute} = calcCountdown(data);
+  const { day, hour, minute } = calcCountdown(data);
 
   const location = {
     lat: data.venue.lat,
     lng: data.venue.lng,
   };
 
-  if(router.isFallback) {
-    return <div>Yükleniyor..</div>
+  if (router.isFallback) {
+    return <div>Yükleniyor..</div>;
   } else {
     return (
-      <div className={styles.mainContainer}>
+      <div>
         <Head>
           <title>{title}</title>
         </Head>
-        <Header  isHomePage={false}/>
+        <Header isHomePage={false} />
         <div className={styles.mainContent}>
           <h2>{data.name}</h2>
           <div className={styles.eventDetails}>
@@ -49,22 +55,33 @@ export default function Event({ data }) {
                     <p>
                       <MdDateRange />
                       <b>Tarih - Saat:</b>
-                      <br /> 
+                      <br />
                       {date} - {time}
                     </p>
                     <p>
                       <MdLocationPin />
                       <b>Konum:</b>
-                      <br /> 
+                      <br />
                       {data.venue.name}
                     </p>
                   </div>
-                  <a className={styles.actionBtn} href={data.ticket_url} target="_blank" rel="noreferrer">Bilet Al</a>
+                  <a
+                    className={styles.actionBtn}
+                    href={data.ticket_url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Bilet Al
+                  </a>
                 </div>
                 <div className={styles.countdown}>
                   <GiSandsOfTime className={styles.countdownIcon} />
                   <p>
-                      Etkinliğin başlamasına <br/> <strong>{day} gün {hour} saat {minute} dakika</strong> <br/> kaldı.
+                    Etkinliğin başlamasına <br />{" "}
+                    <strong>
+                      {day} gün {hour} saat {minute} dakika
+                    </strong>{" "}
+                    <br /> kaldı.
                   </p>
                 </div>
               </div>
@@ -75,18 +92,20 @@ export default function Event({ data }) {
             </div>
             <div className={styles.map}>
               <h3>Konum Bilgisi</h3>
-              {
-                location.lat && location.lng
-                ?
-                <Mapx location={location} addressTitle={data.venue.address} className={styles.mapbox}/>
-                :
+              {location.lat && location.lng ? (
+                <Mapx
+                  location={location}
+                  addressTitle={data.venue.address}
+                  className={styles.mapbox}
+                />
+              ) : (
                 <p>Harita verisi mevcut değil.</p>
-              }
+              )}
             </div>
           </div>
         </div>
       </div>
-    ); 
+    );
   }
 }
 
@@ -100,15 +119,14 @@ export async function getStaticPaths() {
   });
 
   const data = await response.json();
-  const paths = await data.items.map(item => ({
-    params: {id: String(item.id)}
+  const paths = await data.items.map((item) => ({
+    params: { id: String(item.id) },
   }));
 
   return {
     paths,
     fallback: "blocking",
   };
-
 }
 
 export async function getStaticProps({ params }) {
@@ -126,6 +144,6 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { data },
-    revalidate: 60
+    revalidate: 60,
   };
 }

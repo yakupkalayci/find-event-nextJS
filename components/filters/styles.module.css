@@ -48,3 +48,9 @@
         padding: 0;
     }
 }
+
+@media screen and (min-width:743px) {
+    .categoryFilter > button {
+        width: 100%;
+    }
+}

@@ -31,3 +31,12 @@
         row-gap: 10px;
     }
 }
+
+@media screen and (min-width: 743px) and (max-width:1440px) {
+    .header {
+        padding: 1rem 3rem;
+    }
+    .links > ul {
+        column-gap: 20px;
+    }
+}

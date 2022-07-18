@@ -160,3 +160,23 @@
         height: auto;
     }
 }
+
+@media screen and (min-width: 743px ) and (max-width: 1440px) {
+    .main {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .sliderContainer {
+        background-color: initial;
+    }
+    .changeBtn {
+        padding: 0;
+        margin: 0;
+    }
+    .info {
+        padding: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+

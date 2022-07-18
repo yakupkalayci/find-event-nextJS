@@ -105,6 +105,7 @@
 @media screen and (max-width: 743px) {
     .firstDetails {
         flex-direction: column;
+        margin-top: 1rem;
     }
 
     .map {
@@ -137,8 +138,15 @@
     .eventDescription {
         padding: 1rem;
     }
+}
 
+@media screen and (min-width:743px) and (max-width: 1024px) {
     .firstDetails {
+        flex-direction: column;
         margin-top: 1rem;
+    }
+    .datePlaceInfos {
+        padding-top: 1rem;
+        row-gap: 0 !important;
     }
 }

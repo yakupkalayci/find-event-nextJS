@@ -84,3 +84,21 @@
         width: 90%;
     }
 }
+
+@media screen and (min-width: 743px) and (max-width: 1024px) {
+    .eventCard {
+        width: 100%;
+    }
+    .eventImg > img {
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+    .eventCard {
+        width: 40%;
+    }
+    .eventImg > img {
+        width: 100%;
+    }
+}

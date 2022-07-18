@@ -85,3 +85,15 @@
         margin: 0;
     }
 }
+
+@media screen and (min-width:743px) and (max-width:1024px) {
+    .subContainer {
+        padding: 0 1rem;
+    }
+    .filters, .firstTitle {
+        width: 30%;
+    }
+    .eventCard, .secondTitle {
+        width: 70%;
+    }
+}
