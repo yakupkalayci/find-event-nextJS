@@ -12,10 +12,10 @@ export default function Event({ data }) {
   const router = useRouter();
   const title = `Etkinliğini Bul`
 
-  let date = new Date(data?.start).toDateString();
+  let date = new Date(data.start).toDateString();
   date = setDate(date);
 
-  const time = calcEventTime(data?.start);
+  const time = calcEventTime(data.start);
   const {day, hour, minute} = calcCountdown(data);
 
   const location = {
@@ -52,7 +52,7 @@ export default function Event({ data }) {
                       <MdLocationPin />
                       <b>Konum:</b>
                       <br /> 
-                      {data?.venue?.name}
+                      {data.venue.name}
                     </p>
                   </div>
                   <a className={styles.actionBtn} href={data.ticket_url} target="_blank" rel="noreferrer">Bilet Al</a>
@@ -96,18 +96,18 @@ export async function getStaticPaths() {
   });
 
   const data = await response.json();
-  const paths = await data?.items?.map(item => ({
+  const paths = await data.items.map(item => ({
     params: {id: String(item.id)}
   }));
 
   return {
     paths,
-    fallback: true,
+    fallback: blocking,
   };
 
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   const response = await fetch(
     `https://backend.etkinlik.io/api/v2/events/${params.id}`,
     {
@@ -122,5 +122,6 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: { data },
+    revalidate: 60
   };
 }
