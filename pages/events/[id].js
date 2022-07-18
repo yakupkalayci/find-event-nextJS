@@ -87,8 +87,6 @@ export default function Event({ data }) {
 }
 
 export async function getStaticPaths() {
-  console.log("===> getStaticProps");
-
   const response = await fetch("https://backend.etkinlik.io/api/v2/events", {
     method: "GET",
     headers: {
@@ -96,7 +94,6 @@ export async function getStaticPaths() {
       "X-Etkinlik-token": process.env.NEXT_PUBLIC_ETKINLIK_TOKEN,
     },
   });
-  console.log(response.ok);
 
   const data = await response.json();
   const paths = await data?.items?.map(item => ({
@@ -105,7 +102,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 
 }
