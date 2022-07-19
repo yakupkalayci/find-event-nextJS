@@ -3,7 +3,7 @@
 }
 
 .subContainer {
-    padding: 0 5rem;
+    padding: 1rem 5rem;
 }
 
 .subsubContainer {
@@ -21,6 +21,27 @@
     flex-wrap: wrap;
     margin-left: 5rem;
     margin-top: 1rem;
+}
+
+.showMoreButtonContainer {
+    width: 75%;
+    padding-left: 40%;
+    padding-bottom: 1rem;
+}
+
+ .showMoreButton {
+    background: none; 
+    border: none;
+    text-decoration: underline;
+    /* color: rgba(43,39,39); */
+    color: rgb(160, 5, 5);
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.showMoreButton:hover {
+    cursor: pointer;
 }
 
 .titles {
@@ -48,7 +69,7 @@
 
 @media screen and (max-width: 743px) {
     .subContainer {
-        padding: 0;
+        padding: 1rem 0;
     }
 
     .subsubContainer {
@@ -88,12 +109,18 @@
 
 @media screen and (min-width:743px) and (max-width:1024px) {
     .subContainer {
-        padding: 0 1rem;
+        padding: 1rem;
     }
     .filters, .firstTitle {
         width: 30%;
     }
     .eventCard, .secondTitle {
         width: 70%;
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .showMoreButtonContainer {
+        padding-left: 30%;
     }
 }

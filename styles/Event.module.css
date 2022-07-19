@@ -39,6 +39,11 @@
     margin-bottom: 1rem;
 }
 
+.showonMapLink {
+    color: teal;
+    text-decoration: underline;
+}
+
 .eventInfos > .countdown {
     width: 100%;
     text-align: center;

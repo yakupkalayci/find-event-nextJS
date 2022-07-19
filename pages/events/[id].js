@@ -61,6 +61,8 @@ export default function Event({ data }) {
                       <b>Konum:</b>
                       <br />
                       {data.venue.name}
+                      <br />
+                      {location.lat && location.lng && <a href="#map" className={styles.showonMapLink}>Haritada Göster</a>}
                     </p>
                   </div>
                   <a
@@ -88,7 +90,7 @@ export default function Event({ data }) {
               <h3>Açıklama</h3>
               <div dangerouslySetInnerHTML={createMarkup(data)} />;
             </div>
-            <div className={styles.map}>
+            <div className={styles.map} id="map">
               <h3>Konum Bilgisi</h3>
               {location.lat && location.lng ? (
                 <Mapx
